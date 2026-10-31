@@ -50,7 +50,7 @@ No Supabase credentials were available during the initial implementation. The ap
 - README includes light/dark dashboard screenshots, features, CMD/PowerShell setup, Supabase configuration, and links to deployment instructions.
 - Full verification before upload: 46 tests, production build including TypeScript, and ESLint pass.
 - Source credential scan and README image-path checks pass. `.env.local`, dependency folders, and generated builds are excluded.
-- Included screenshots were supplied by the app owner; they predate the editable greeting. No new browser automation screenshots are claimed.
+- Included screenshots were supplied by the app owner. The latest dark-mode capture includes the editable greeting; the light-mode capture still predates it. A new Edge screenshot attempt was denied by the app approval gate, so no new browser automation capture is claimed.
 
 PGlite runs disposable PostgreSQL in-process. Its test Auth schema simulates Supabase roles and JWT ownership; it does not replace hosted integration checks.
 

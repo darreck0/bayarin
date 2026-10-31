@@ -25,14 +25,11 @@ A personal monthly bills and debt tracker with recurring bills, payment progress
 
 ![Bayarin desktop dashboard in light mode, with monthly totals and a bill list](docs/screenshots/desktop-light.png)
 
-<details>
-<summary>View dark mode</summary>
+### Dark mode
 
-![Bayarin desktop dashboard in dark mode](docs/screenshots/desktop-dark.png)
+![Bayarin desktop dashboard in dark mode with an editable greeting](docs/screenshots/desktop-dark.png)
 
-</details>
-
-These dashboard captures were taken during the UI redesign. The current version also includes the editable greeting above the title.
+The dark-mode capture shows the current editable greeting and pencil button. The light-mode image illustrates the earlier dashboard layout.
 
 ## Run locally
 
