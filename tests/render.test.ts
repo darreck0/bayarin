@@ -7,10 +7,11 @@ import { buildMonthBills } from '../src/lib/bills';
 import type { Bill } from '../src/lib/database.types';
 
 vi.mock('@/app/actions', () => ({ saveBill: vi.fn(), deleteBill: vi.fn(), setBillPayment: vi.fn() }));
+vi.mock('@/app/profile-actions', () => ({ saveDisplayName: vi.fn() }));
 vi.mock('@/app/login/actions', () => ({ signIn: vi.fn(), signOut: vi.fn() }));
 
 function render(bills: Bill[], today = '2026-11-02') {
-  return renderToStaticMarkup(createElement(Dashboard, { month: '2026-11', initialToday: today, bills: buildMonthBills(bills, [], '2026-11') }));
+  return renderToStaticMarkup(createElement(Dashboard, { month: '2026-11', initialToday: today, displayName: 'Alex', bills: buildMonthBills(bills, [], '2026-11') }));
 }
 it('renders empty dashboard with zero totals and an accessible add action', () => {
   const html = render([]);

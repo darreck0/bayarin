@@ -11,6 +11,6 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ m
   const today = manilaDate();
   if (selected !== undefined && !isMonthKey(selected)) redirect('/');
   const month = selected ?? today.slice(0, 7);
-  const bills = await loadBills(month);
-  return <Dashboard key={month} month={month} bills={bills} initialToday={today} />;
+  const { bills, displayName } = await loadBills(month);
+  return <Dashboard key={month} month={month} bills={bills} initialToday={today} displayName={displayName} />;
 }

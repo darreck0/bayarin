@@ -3,45 +3,57 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #f8f9f6;
-  --foreground: #20271f;
+  --background: #f8f7f5;
+  --foreground: #252320;
   --card: #ffffff;
-  --card-foreground: #20271f;
+  --card-foreground: #252320;
   --popover: #ffffff;
-  --popover-foreground: #20271f;
-  --primary: #3f6441;
+  --popover-foreground: #252320;
+  --primary: #c64b05;
   --primary-foreground: #ffffff;
-  --secondary: #edf0e9;
-  --secondary-foreground: #31472f;
-  --muted: #eef0eb;
-  --muted-foreground: #697268;
-  --accent: #e8eee3;
-  --accent-foreground: #31472f;
+  --secondary: #fff0df;
+  --secondary-foreground: #91400e;
+  --muted: #f0eeeb;
+  --muted-foreground: #716a63;
+  --accent: #fff0df;
+  --accent-foreground: #91400e;
   --destructive: #bd3838;
-  --border: #e1e6dc;
-  --input: #d5ddcf;
-  --ring: #64895c;
+  --border: #e8e3dc;
+  --input: #d9d0c5;
+  --ring: #d36624;
+  --summary-from: #fff6e9;
+  --summary-to: #ffe0b5;
+  --summary-foreground: #3b2414;
+  --summary-muted: #795535;
+  --summary-divider: #eec99b;
+  --summary-track: #eccba4;
   --radius: 0.75rem;
 }
 .dark {
-  --background: #141a15;
-  --foreground: #e8ede5;
-  --card: #1c241d;
-  --card-foreground: #e8ede5;
-  --popover: #202a22;
-  --popover-foreground: #e8ede5;
-  --primary: #a3c58b;
-  --primary-foreground: #172613;
-  --secondary: #293629;
-  --secondary-foreground: #d3e3c8;
-  --muted: #263027;
-  --muted-foreground: #a1af9d;
-  --accent: #2d3b2a;
-  --accent-foreground: #e0eadb;
+  --background: #191715;
+  --foreground: #f5f0e9;
+  --card: #24211e;
+  --card-foreground: #f5f0e9;
+  --popover: #2d2722;
+  --popover-foreground: #f5f0e9;
+  --primary: #ffb16b;
+  --primary-foreground: #2e180a;
+  --secondary: #3a2c20;
+  --secondary-foreground: #ffd7ab;
+  --muted: #302b26;
+  --muted-foreground: #b7aba0;
+  --accent: #3a2c20;
+  --accent-foreground: #ffd7ab;
   --destructive: #f28b82;
-  --border: #334032;
-  --input: #43533f;
-  --ring: #a3c58b;
+  --border: #41372e;
+  --input: #554638;
+  --ring: #ffb16b;
+  --summary-from: #33271c;
+  --summary-to: #49301c;
+  --summary-foreground: #fff1df;
+  --summary-muted: #e3be98;
+  --summary-divider: #6d4929;
+  --summary-track: #735134;
 }
 @theme inline {
   --color-background: var(--background);
@@ -77,4 +89,9 @@
 @layer components {
   .eyebrow { @apply text-[10px] font-semibold tracking-[0.18em] text-muted-foreground; }
   .tabular-money { font-variant-numeric: tabular-nums; letter-spacing: -0.03em; }
+  .summary-card {
+    border-color: var(--summary-divider);
+    color: var(--summary-foreground);
+    background: radial-gradient(ellipse at top right, #ffb65440, transparent 65%), linear-gradient(135deg, var(--summary-from), var(--summary-to));
+  }
 }

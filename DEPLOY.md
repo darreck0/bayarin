@@ -27,18 +27,23 @@ If connectivity fails during creation, refresh before retrying: a write whose re
 
 ## 3. GitHub
 
-Create a **private**, empty GitHub repository named `bayarin`. From the project root:
+The app's private repository is [darreck0/bayarin](https://github.com/darreck0/bayarin). To work from another laptop:
 
-```powershell
-git init
-git add .
-git commit -m "Build Bayarin bills tracker"
-git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/bayarin.git
-git push -u origin main
+```sh
+git clone https://github.com/darreck0/bayarin.git
+cd bayarin
+npm ci
 ```
 
-If this checkout already has its initial commit, skip the first three commands. If `origin` exists, inspect it before adding a remote. Include `package-lock.json`; exclude `.env.local`, `.next`, and `node_modules`. The downloadable source archive has no Git metadata.
+Configure `.env.local` as described in the README. To upload later source changes from a checkout:
+
+```sh
+git add .
+git commit -m "Update Bayarin"
+git push origin main
+```
+
+Include `package-lock.json`; exclude `.env.local`, `.next`, and `node_modules`. The downloadable source archive has no Git metadata. GitHub stores the app code; it does not host your Supabase database or replace Vercel hosting.
 
 ## 4. Vercel
 
