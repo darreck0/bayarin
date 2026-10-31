@@ -46,7 +46,7 @@ No Supabase credentials were available during the initial implementation. The ap
 
 ## GitHub handoff
 
-- Private repository: [darreck0/bayarin](https://github.com/darreck0/bayarin).
+- Public source repository: [darreck0/bayarin](https://github.com/darreck0/bayarin), made public at the app owner's request. Supabase data remains authenticated.
 - README includes light/dark dashboard screenshots, features, CMD/PowerShell setup, Supabase configuration, and links to deployment instructions.
 - Full verification before upload: 46 tests, production build including TypeScript, and ESLint pass.
 - Source credential scan and README image-path checks pass. `.env.local`, dependency folders, and generated builds are excluded.

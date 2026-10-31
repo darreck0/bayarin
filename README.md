@@ -46,7 +46,7 @@ cd bayarin
 npm ci
 ```
 
-The repository is private, so GitHub must be signed in with an account that has access.
+The source repository is public. Bill data still requires Supabase authentication and belongs to the project configured in your local environment.
 
 ### 2. Set up Supabase
 

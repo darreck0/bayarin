@@ -27,7 +27,7 @@ If connectivity fails during creation, refresh before retrying: a write whose re
 
 ## 3. GitHub
 
-The app's private repository is [darreck0/bayarin](https://github.com/darreck0/bayarin). To work from another laptop:
+The app's public source repository is [darreck0/bayarin](https://github.com/darreck0/bayarin). To work from another laptop:
 
 ```sh
 git clone https://github.com/darreck0/bayarin.git
@@ -47,7 +47,7 @@ Include `package-lock.json`; exclude `.env.local`, `.next`, and `node_modules`. 
 
 ## 4. Vercel
 
-1. **Add New → Project**, import your private repository, select **Next.js**, and use **Node.js 24.x**.
+1. **Add New → Project**, import the repository, select **Next.js**, and use **Node.js 24.x**.
 2. Use the project root. If you pushed the larger parent workspace, select `outputs/bayarin` as Root Directory.
 3. Add `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` to Production environment variables. Preview is optional; previews using the same Supabase project share real data.
 4. Keep the framework-managed defaults and `npm run build`; deploy on Hobby.
