@@ -1,0 +1,80 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: #f8f9f6;
+  --foreground: #20271f;
+  --card: #ffffff;
+  --card-foreground: #20271f;
+  --popover: #ffffff;
+  --popover-foreground: #20271f;
+  --primary: #3f6441;
+  --primary-foreground: #ffffff;
+  --secondary: #edf0e9;
+  --secondary-foreground: #31472f;
+  --muted: #eef0eb;
+  --muted-foreground: #697268;
+  --accent: #e8eee3;
+  --accent-foreground: #31472f;
+  --destructive: #bd3838;
+  --border: #e1e6dc;
+  --input: #d5ddcf;
+  --ring: #64895c;
+  --radius: 0.75rem;
+}
+.dark {
+  --background: #141a15;
+  --foreground: #e8ede5;
+  --card: #1c241d;
+  --card-foreground: #e8ede5;
+  --popover: #202a22;
+  --popover-foreground: #e8ede5;
+  --primary: #a3c58b;
+  --primary-foreground: #172613;
+  --secondary: #293629;
+  --secondary-foreground: #d3e3c8;
+  --muted: #263027;
+  --muted-foreground: #a1af9d;
+  --accent: #2d3b2a;
+  --accent-foreground: #e0eadb;
+  --destructive: #f28b82;
+  --border: #334032;
+  --input: #43533f;
+  --ring: #a3c58b;
+}
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-sans: "Segoe UI", Arial, Helvetica, sans-serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  body { @apply bg-background text-foreground font-sans; }
+  button:not(:disabled), [role="button"]:not([aria-disabled="true"]) { cursor: pointer; }
+  ::selection { background: var(--accent); }
+}
+@layer components {
+  .eyebrow { @apply text-[10px] font-semibold tracking-[0.18em] text-muted-foreground; }
+  .tabular-money { font-variant-numeric: tabular-nums; letter-spacing: -0.03em; }
+}
