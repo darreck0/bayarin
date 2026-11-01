@@ -1,0 +1,93 @@
+name: Build Android APK
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'mobile/**'
+      - '.github/workflows/android-apk.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: bayarin-android-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  android:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    defaults:
+      run:
+        working-directory: mobile
+    env:
+      CI: '1'
+      EXPO_PUBLIC_SUPABASE_URL: ${{ secrets.EXPO_PUBLIC_SUPABASE_URL }}
+      EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY }}
+      BAYARIN_STORE_PASSWORD: ${{ secrets.BAYARIN_ANDROID_STORE_PASSWORD }}
+      NODE_OPTIONS: --max-old-space-size=4096
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: mobile/package-lock.json
+      - uses: actions/setup-java@v6.1.0
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Install mobile dependencies
+        run: npm ci
+      - name: Check TypeScript
+        run: npm run typecheck
+      - name: Verify public app configuration
+        run: npm run check:config
+      - name: Check SDK dependencies
+        run: npx expo install --check
+      - name: Generate the Android project
+        run: npx expo prebuild --platform android --no-install
+      - name: Prepare release signing
+        env:
+          KEYSTORE_BASE64: ${{ secrets.BAYARIN_ANDROID_KEYSTORE_BASE64 }}
+        run: |
+          test -n "$KEYSTORE_BASE64" && test -n "$BAYARIN_STORE_PASSWORD"
+          printf '%s' "$KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/bayarin.p12"
+          echo "BAYARIN_KEYSTORE_PATH=$RUNNER_TEMP/bayarin.p12" >> "$GITHUB_ENV"
+      - name: Build the standalone release APK
+        working-directory: mobile/android
+        run: |
+          chmod +x gradlew
+          ./gradlew :app:assembleRelease --no-daemon --max-workers=2 -Dorg.gradle.jvmargs="-Xmx4g -XX:MaxMetaspaceSize=1024m" --stacktrace
+      - name: Verify and prepare the installer
+        run: |
+          mkdir -p artifacts
+          APK=android/app/build/outputs/apk/release/app-release.apk
+          APKSIGNER=$(find "$ANDROID_HOME/build-tools" -name apksigner -type f | sort -V | tail -n 1)
+          "$APKSIGNER" verify --verbose --print-certs "$APK"
+          cp "$APK" artifacts/Bayarin-1.0.0.apk
+          cd artifacts
+          sha256sum Bayarin-1.0.0.apk > Bayarin-1.0.0.apk.sha256
+      - name: Enable Android emulator acceleration
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Install and launch the APK on Android
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          arch: x86_64
+          target: google_apis
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          script: bash "$GITHUB_WORKSPACE/mobile/scripts/smoke-android.sh"
+      - name: Upload the APK and verification artifacts
+        if: always()
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: bayarin-android-apk
+          path: mobile/artifacts/
+          if-no-files-found: error
+          retention-days: 14

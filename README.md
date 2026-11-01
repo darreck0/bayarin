@@ -8,6 +8,8 @@ A personal monthly bills and debt tracker with recurring bills, payment progress
 
 [Install locally](#run-locally) · [Screenshots](#screenshots) · [Deployment guide](DEPLOY.md) · [Verification](CHECKS.md)
 
+**Android app:** the React Native + Expo version lives in [`mobile/`](mobile/). See the [Android installation and build guide](mobile/README.md) for the standalone APK and Expo Go setup. It uses the same Supabase records as the web app.
+
 ## Features
 
 - Browse bills by month, sorted by due date.

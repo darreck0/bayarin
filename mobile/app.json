@@ -1,0 +1,46 @@
+{
+  "expo": {
+    "name": "Bayarin",
+    "slug": "bayarin",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.darreck0.bayarin"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#ee6b12",
+        "foregroundImage": "./assets/adaptive-icon.png"
+      },
+      "predictiveBackGestureEnabled": false,
+      "package": "com.darreck0.bayarin",
+      "versionCode": 1,
+      "permissions": [],
+      "allowBackup": false
+    },
+    "web": {
+      "favicon": "./assets/icon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/icon.png",
+          "imageWidth": 112,
+          "resizeMode": "contain",
+          "backgroundColor": "#f8f7f5",
+          "dark": {
+            "backgroundColor": "#191715"
+          }
+        }
+      ],
+      "./plugins/withAndroidSigning.cjs",
+      "expo-font"
+    ],
+    "scheme": "bayarin"
+  }
+}
