@@ -13,9 +13,9 @@ function Sheet({ title, description, busy, onClose, children }: { title: string;
   return <Modal visible transparent animationType="slide" onRequestClose={() => { if (!busy) onClose(); }}>
     <KeyboardAvoidingView style={[s.overlay, { backgroundColor: colors.overlay }]} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <View style={[s.sheet, { backgroundColor: colors.background }]}>
-        <SafeAreaView edges={['bottom']}>
+        <SafeAreaView edges={['bottom']} style={{ flexShrink: 1 }}>
           <View style={s.heading}><View style={{ flex: 1 }}><Text style={[s.title, { color: colors.foreground }]}>{title}</Text><Text style={[s.description, { color: colors.muted }]}>{description}</Text></View><IconButton icon="close" label="Close dialog" disabled={busy} onPress={onClose} /></View>
-          <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={s.content}>{children}</ScrollView>
+          <ScrollView style={{ flexShrink: 1 }} keyboardShouldPersistTaps="handled" contentContainerStyle={s.content}>{children}</ScrollView>
         </SafeAreaView>
       </View>
     </KeyboardAvoidingView>

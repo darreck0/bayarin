@@ -5,6 +5,7 @@ on:
   push:
     paths:
       - 'mobile/**'
+      - '!mobile/**/*.md'
       - '.github/workflows/android-apk.yml'
 
 permissions:
@@ -38,10 +39,19 @@ jobs:
         with:
           distribution: temurin
           java-version: '21'
+      - uses: actions/cache@v6.1.0
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: android-gradle-${{ runner.os }}-${{ hashFiles('mobile/package-lock.json', 'mobile/app.json', 'mobile/plugins/**') }}
+          restore-keys: android-gradle-${{ runner.os }}-
       - name: Install mobile dependencies
         run: npm ci
       - name: Check TypeScript
         run: npm run typecheck
+      - name: Check lint
+        run: npm run lint
       - name: Verify public app configuration
         run: npm run check:config
       - name: Check SDK dependencies
