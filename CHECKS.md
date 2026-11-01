@@ -65,3 +65,16 @@ npm run build
 ```
 
 These checks need no Supabase credentials. Follow DEPLOY.md for the remaining live checks.
+
+## Android app — November 1, 2026
+
+- Added an independent React Native + Expo SDK 57 project in `mobile/`, using the existing Supabase schema and Auth account. Native screens cover login, monthly bills, payment status, CRUD, editable greeting, themes, and foreground refresh.
+- Mobile TypeScript, ESLint, SDK dependency validation, all 21 Expo Doctor checks, Android bundle export, and Expo Android prebuild pass locally.
+- The web production build, TypeScript, and ESLint still pass. The test suite now contains 52 passing tests across eight files, including six native API tests for verified ownership, selected-month writes, one-time visibility, failed mutations, and metadata-only name changes.
+- Real hosted read-only checks: Auth settings return HTTP 200; unauthenticated bill and payment requests return HTTP 401. Public sign-ups were still enabled when checked; the owner must disable **Allow new users to sign up** in Supabase Auth settings for the intended single-account setup. No hosted account or record was created or changed.
+- [Android build 41293994722](https://github.com/darreck0/bayarin/actions/runs/41293994722) passed: Expo CNG/Gradle release compilation, APK Signature Scheme v2 verification, and installation/startup on an Android 15 (API 35) x86_64 emulator. The standalone app reached its login screen without Metro. Built source commit: `0c67b681a42b764795a0d2ab87f1886720c89a6d`.
+- Downloaded the build artifact and verified the APK's SHA-256 checksum: `ff9c5e8928529a9c5db1589c19b7679bf8418ddc7a236eccea5f175f98c684c7`. The universal APK includes ARM64, ARMv7, x86, x86_64 native libraries and its JavaScript bundle. Visually inspected the actual emulator login screenshot included in the README.
+- Published [Android v1.0.0](https://github.com/darreck0/bayarin/releases/tag/android-v1.0.0) with the APK and checksum. GitHub's uploaded asset digest matches the verified local APK.
+- Public mobile configuration is supplied through ignored local environment files and Actions secrets; no service-role key is used. The private signing key is kept outside the repository and in encrypted Actions secrets.
+- Fixed the vulnerable `decode-uri-component` runtime dependency with a compatible override. Remaining mobile audit findings include inherited Expo CLI/tooling dependencies; no incompatible forced dependency downgrade was applied.
+- Real hosted mobile email/password login, physical-phone keyboard/layout checks, session persistence, and end-to-end authenticated CRUD still need the owner's device/account. Unit tests and an emulator login-screen check do not replace those checks.

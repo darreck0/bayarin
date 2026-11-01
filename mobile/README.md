@@ -4,12 +4,14 @@ React Native + Expo version of Bayarin. It uses the **same Supabase project, acc
 
 ## Install on your phone
 
-1. Open the repository's [Releases](https://github.com/darreck0/bayarin/releases) on your Android phone.
-2. Download the **Bayarin `.apk`** file from the Android release.
+1. Open the [Android release](https://github.com/darreck0/bayarin/releases/tag/android-v1.0.0) on your Android phone.
+2. Download **Bayarin-1.0.0.apk** from **Assets**.
 3. Open the downloaded file and approve installation from your browser/file manager if Android requests it.
 4. Open **Bayarin** and log in with the same email/password you use on the website.
 
 The standalone APK includes its JavaScript bundle and **does not need your laptop, Metro, Expo Go, or Vercel running**. Internet is needed for Supabase login and saving records.
+
+Keep **Allow new users to sign up** disabled in Supabase **Authentication → Sign In / Providers** for the intended single-account setup. The app only offers login; account creation is controlled separately by [Supabase Auth configuration](https://supabase.com/docs/guides/auth/general-configuration).
 
 Supported features:
 
@@ -55,6 +57,8 @@ Install **Expo Go** from Google Play. Keep the laptop and phone on the same Wi-F
 The [Build Android APK workflow](../.github/workflows/android-apk.yml) runs for mobile source changes or manually through **Actions → Build Android APK → Run workflow**.
 
 It installs dependencies, checks TypeScript/configuration, generates Android through Expo CNG, builds a signed standalone release APK, verifies the signature, and installs/launches it on an Android emulator. The workflow artifact contains the APK, SHA-256 checksum, and login-screen smoke-test evidence.
+
+Changes to Markdown documentation do not rebuild the APK. Code/configuration changes do; increase `android.versionCode` and the app version for a new published release.
 
 These repository Actions secrets supply build-time configuration:
 
