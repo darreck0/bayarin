@@ -2,6 +2,12 @@
 
 React Native + Expo version of Bayarin. It uses the **same Supabase project, account, bills, payments, and display name** as the web app. No new database migration is needed for an existing Bayarin project.
 
+## Preview
+
+![Bayarin Android dashboard in light and dark mode](../docs/screenshots/android-light-dark.png)
+
+The app owner's mobile preview shows the editable greeting, monthly summary, and bill statuses in both themes. The [emulator login capture](../docs/screenshots/android-login.png) is also available.
+
 ## Install on your phone
 
 1. Open the [Android release](https://github.com/darreck0/bayarin/releases/tag/android-v1.0.0) on your Android phone.

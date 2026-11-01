@@ -78,3 +78,8 @@ These checks need no Supabase credentials. Follow DEPLOY.md for the remaining li
 - Public mobile configuration is supplied through ignored local environment files and Actions secrets; no service-role key is used. The private signing key is kept outside the repository and in encrypted Actions secrets.
 - Fixed the vulnerable `decode-uri-component` runtime dependency with a compatible override. Remaining mobile audit findings include inherited Expo CLI/tooling dependencies; no incompatible forced dependency downgrade was applied.
 - Real hosted mobile email/password login, physical-phone keyboard/layout checks, session persistence, and end-to-end authenticated CRUD still need the owner's device/account. Unit tests and an emulator login-screen check do not replace those checks.
+
+## Mobile preview — November 2, 2026
+
+- Added the app owner's supplied light/dark mobile dashboard image to the main README and Android guide, with links to the existing public APK release and mobile source. The attachment was copied without modification and its file hash matches.
+- This documentation update does not change the app or rebuild the APK. The supplied dashboard preview is separate from the automated emulator login capture; no additional device testing is claimed.

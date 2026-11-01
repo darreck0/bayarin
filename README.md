@@ -6,7 +6,7 @@
 
 A personal monthly bills and debt tracker with recurring bills, payment progress, an editable greeting, and light/dark themes. Built with **Next.js App Router, TypeScript, Tailwind CSS, shadcn/ui, Supabase Auth/Postgres**, and `@supabase/ssr`.
 
-[Install locally](#run-locally) · [Screenshots](#screenshots) · [Deployment guide](DEPLOY.md) · [Verification](CHECKS.md)
+[Android APK](https://github.com/darreck0/bayarin/releases/tag/android-v1.0.0) · [Install locally](#run-locally) · [Screenshots](#screenshots) · [Deployment guide](DEPLOY.md) · [Verification](CHECKS.md)
 
 **Android app:** [download the standalone APK](https://github.com/darreck0/bayarin/releases/tag/android-v1.0.0). The React Native + Expo source lives in [`mobile/`](mobile/); see the [Android installation and build guide](mobile/README.md) for setup and builds. It uses the same Supabase account and records as the web app.
 
@@ -23,6 +23,12 @@ A personal monthly bills and debt tracker with recurring bills, payment progress
 
 ## Screenshots
 
+### Android app — light and dark mode
+
+![Bayarin Android dashboard in light and dark mode, with an editable greeting, monthly summary, and paid, unpaid, and overdue bills](docs/screenshots/android-light-dark.png)
+
+[Install the Android APK](https://github.com/darreck0/bayarin/releases/tag/android-v1.0.0) and use the same account as the web app. See the [mobile source and setup guide](mobile/README.md).
+
 ### Light mode
 
 ![Bayarin desktop dashboard in light mode, with monthly totals and a bill list](docs/screenshots/desktop-light.png)
@@ -32,12 +38,6 @@ A personal monthly bills and debt tracker with recurring bills, payment progress
 ![Bayarin desktop dashboard in dark mode with an editable greeting](docs/screenshots/desktop-dark.png)
 
 The dark-mode capture shows the current editable greeting and pencil button. The light-mode image illustrates the earlier dashboard layout.
-
-### Android app
-
-<img src="docs/screenshots/android-login.png" alt="Bayarin standalone Android login screen captured from the release APK on an Android emulator" width="320" />
-
-[Install the Android APK](https://github.com/darreck0/bayarin/releases/tag/android-v1.0.0) and use the same account as the web app.
 
 ## Run locally
 
