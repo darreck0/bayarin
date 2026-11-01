@@ -42,5 +42,6 @@
     "export:android": "expo export --platform android",
     "check:config": "node scripts/check-config.cjs"
   },
-  "private": true
+  "private": true,
+  "overrides": { "decode-uri-component": "0.5.1" }
 }
